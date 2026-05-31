@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { translations, translate, isJarvisRunning, ipcConnected, sendTextCommand } from "@/stores"
+    import { translations, translate, isBabuRunning, ipcConnected, sendTextCommand } from "@/stores"
     
     $: t = (key: string) => translate($translations, key)
     
@@ -13,7 +13,7 @@
         const command = searchQuery.trim()
         if (!command || isProcessing) return
         
-        if (!$isJarvisRunning || !$ipcConnected) {
+        if (!$isBabuRunning || !$ipcConnected) {
             statusMessage = t('search-error-not-running')
             setTimeout(() => statusMessage = "", 3000)
             return

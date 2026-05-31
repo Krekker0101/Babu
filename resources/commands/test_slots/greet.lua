@@ -1,2 +1,2 @@
-local name = jarvis.context.slots.name or "[UNKNOWN]"
+local name = babu.context.slots.name or "[UNKNOWN]"
 print("Hello, " .. name .. "!")

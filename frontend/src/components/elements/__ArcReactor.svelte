@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { jarvisState } from "@/stores"
+    import { babuState } from "@/stores"
 
     // map state to class
-    $: stateClass = getStateClass($jarvisState)
+    $: stateClass = getStateClass($babuState)
 
     function getStateClass(state: string): string {
         switch (state) {
@@ -53,13 +53,13 @@
     <div class="state-label">
         <span class="status-dot"></span>
         <span class="label-text">
-            {#if $jarvisState === "disconnected"}
+            {#if $babuState === "disconnected"}
                 Отключен
-            {:else if $jarvisState === "idle"}
+            {:else if $babuState === "idle"}
                 Ожидание
-            {:else if $jarvisState === "listening"}
+            {:else if $babuState === "listening"}
                 Слушаю
-            {:else if $jarvisState === "processing"}
+            {:else if $babuState === "processing"}
                 Обработка
             {/if}
         </span>

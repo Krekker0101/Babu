@@ -1,10 +1,10 @@
 <script lang="ts">
     import { invoke } from "@tauri-apps/api/core"
     import { onMount } from "svelte"
-    import { 
-        isJarvisRunning, 
-        jarvisRamUsage, 
-        jarvisCpuUsage,
+    import {
+        isBabuRunning,
+        babuRamUsage,
+        babuCpuUsage,
         ipcConnected,
         translations,
         translate
@@ -19,7 +19,7 @@
 
     onMount(async () => {
         microphoneName = t('stats-loading')
-        
+
         try {
             const micIndex = await invoke<string>("db_read", { key: "selected_microphone" })
             if (micIndex && micIndex !== "-1") {
@@ -33,8 +33,8 @@
             }
 
             wakeWordEngine = await invoke<string>("db_read", { key: "selected_wake_word_engine" }) || "Rustpotter"
-            sttEngine = await invoke<string>("db_read", { key: "selected_stt_engine" }) || "Vosk"
-            vadInfo = await invoke<string>("db_read", { key: "vad" }) || "Vosk"
+            sttEngine = await invoke<string>("db_read", { key: "speech_to_text_engine" }) || "Vosk"
+            vadInfo = await invoke<string>("db_read", { key: "vad_backend" }) || "energy"
         } catch (err) {
             console.error("Failed to load stats:", err)
             microphoneName = t('stats-not-selected')
@@ -48,13 +48,13 @@
 
 <div class="stats-bar">
     <div class="stat-item">
-        <span class="stat-dot" class:active={$isJarvisRunning} style="--color: #22c55e;"></span>
+        <span class="stat-dot" class:active={$isBabuRunning} style="--color: #22c55e;"></span>
         <div class="stat-content">
             <span class="stat-label">{t('stats-microphone')}</span>
             <span class="stat-value" title="{microphoneName}">{truncate(microphoneName, 18)}</span>
         </div>
     </div>
-    
+
     <div class="stat-item">
         <span class="stat-dot" class:active={$ipcConnected} style="--color: #f97316;"></span>
         <div class="stat-content">
@@ -63,12 +63,12 @@
             <span class="stat-value-sub">{#if vadInfo != "None"}VAD: {vadInfo}{/if}</span>
         </div>
     </div>
-    
+
     <div class="stat-item">
         <span class="stat-dot" class:active={$ipcConnected} style="--color: #3b82f6;"></span>
         <div class="stat-content">
             <span class="stat-label">{t('stats-resources')}</span>
-            <span class="stat-value">{#if $jarvisRamUsage }RAM {$jarvisRamUsage}mb{:else}...{/if}</span>
+            <span class="stat-value">{#if $babuRamUsage }RAM {$babuRamUsage}mb{:else}...{/if}</span>
         </div>
     </div>
 </div>

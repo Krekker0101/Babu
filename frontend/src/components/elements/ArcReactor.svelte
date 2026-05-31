@@ -1,12 +1,12 @@
 <script lang="ts">
-    import { jarvisState } from "@/stores"
+    import { babuState } from "@/stores"
 
     $: stateClass = {
         'disconnected': 'disconnected',
         'idle': 'idle',
         'listening': 'active',
         'processing': 'active'
-    }[$jarvisState] || 'disconnected'
+    }[$babuState] || 'disconnected'
 </script>
 
 <div id="arc-reactor" class="reactor-container {stateClass} arc-white">

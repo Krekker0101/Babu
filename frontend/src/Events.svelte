@@ -4,15 +4,15 @@
     import { invoke } from "@tauri-apps/api/core"
     import { assistantVoice } from "@/stores"
 
-    let voiceVal = "jarvis-og"
+    let voiceVal = "babu-og"
     assistantVoice.subscribe(value => {
-        voiceVal = value || "jarvis-og"
+        voiceVal = value || "babu-og"
     })
 
     onMount(async () => {
         // audio playback event
         await listen<{ data: string }>("audio-play", async (event) => {
-            const voice = voiceVal || "jarvis-remake"
+            const voice = voiceVal || "babu-remaster"
             const filename = `sound/${voice}/${event.payload.data}.wav`
 
             try {

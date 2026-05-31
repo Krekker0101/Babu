@@ -1,16 +1,16 @@
 -- simple counter demonstrating state persistence
 
-local count = jarvis.state.get("count") or 0
+local count = babu.state.get("count") or 0
 count = count + 1
-jarvis.state.set("count", count)
+babu.state.set("count", count)
 
-local lang = jarvis.context.language
+local lang = babu.context.language
 local msg = lang == "ru"
     and "Счётчик: " .. count
     or "Counter: " .. count
 
-jarvis.log("info", msg)
-jarvis.system.notify("Counter", tostring(count))
-jarvis.audio.play_ok()
+babu.log("info", msg)
+babu.system.notify("Counter", tostring(count))
+babu.audio.play_ok()
 
 return { chain = true }

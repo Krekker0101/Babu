@@ -4,9 +4,9 @@ import { getCurrentWindow } from "@tauri-apps/api/window"
 
 // ### IPC STORES ###
 
-export type JarvisState = "disconnected" | "idle" | "listening" | "processing"
+export type BabuState = "disconnected" | "idle" | "listening" | "processing"
 
-export const jarvisState = writable<JarvisState>("disconnected")
+export const babuState = writable<BabuState>("disconnected")
 export const ipcConnected = writable(false)
 export const lastRecognizedText = writable("")
 export const lastExecutedCommand = writable("")
@@ -39,7 +39,7 @@ export function connectIpc(port: number = 9712) {
 
     ws.onopen = () => {
         ipcConnected.set(true)
-        jarvisState.set("idle")
+        babuState.set("idle")
         console.log("[IPC] connected")
     }
 
@@ -86,7 +86,7 @@ export function disconnectIpc() {
     }
 
     ipcConnected.set(false)
-    jarvisState.set("disconnected")
+    babuState.set("disconnected")
 }
 
 // ### EVENT HANDLING ###
@@ -97,12 +97,12 @@ function handleEvent(data: any) {
     switch (data.event) {
         case "wake_word_detected":
         case "listening":
-            jarvisState.set("listening")
+            babuState.set("listening")
             break
 
         case "speech_recognized":
             lastRecognizedText.set(data.text || "")
-            jarvisState.set("processing")
+            babuState.set("processing")
             break
 
         case "command_executed":
@@ -110,7 +110,7 @@ function handleEvent(data: any) {
             break
 
         case "idle":
-            jarvisState.set("idle")
+            babuState.set("idle")
             break
 
         case "error":
@@ -118,11 +118,11 @@ function handleEvent(data: any) {
             break
 
         case "started":
-            jarvisState.set("idle")
+            babuState.set("idle")
             break
 
         case "stopping":
-            jarvisState.set("disconnected")
+            babuState.set("disconnected")
             break
 
         case "pong":
@@ -147,7 +147,7 @@ export function sendAction(action: string, payload: Record<string, any> = {}) {
     return true
 }
 
-export function stopJarvisApp() {
+export function stopBabuApp() {
     return sendAction("stop")
 }
 

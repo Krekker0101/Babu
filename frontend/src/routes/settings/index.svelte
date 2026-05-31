@@ -107,13 +107,13 @@
                 invoke("db_write", { key: "assistant_voice", val: voiceVal }),
                 invoke("db_write", { key: "selected_microphone", val: selectedMicrophone }),
                 invoke("db_write", { key: "selected_wake_word_engine", val: selectedWakeWordEngine }),
-                invoke("db_write", { key: "selected_intent_recognition_engine", val: selectedIntentRecognitionEngine }),
-                invoke("db_write", { key: "selected_slot_extraction_engine", val: selectedSlotExtractionEngine }),
+                invoke("db_write", { key: "intent_backend", val: selectedIntentRecognitionEngine }),
+                invoke("db_write", { key: "slots_backend", val: selectedSlotExtractionEngine === "gliner" ? (selectedGlinerModel || "none") : "none" }),
                 invoke("db_write", { key: "selected_gliner_model", val: selectedGlinerModel }),
                 invoke("db_write", { key: "selected_vosk_model", val: selectedVoskModel }),
 
                 invoke("db_write", { key: "noise_suppression", val: selectedNoiseSuppression }),
-                invoke("db_write", { key: "vad", val: selectedVad }),
+                invoke("db_write", { key: "vad_backend", val: selectedVad }),
                 invoke("db_write", { key: "gain_normalizer", val: gainNormalizerEnabled.toString() }),
 
                 invoke("db_write", { key: "api_key__picovoice", val: apiKeyPicovoice }),
@@ -191,13 +191,13 @@
                    pico, openai] = await Promise.all([
                 invoke<string>("db_read", { key: "selected_microphone" }),
                 invoke<string>("db_read", { key: "selected_wake_word_engine" }),
-                invoke<string>("db_read", { key: "selected_intent_recognition_engine" }),
-                invoke<string>("db_read", { key: "selected_slot_extraction_engine" }),
+                invoke<string>("db_read", { key: "intent_backend" }),
+                invoke<string>("db_read", { key: "slots_backend" }),
                 invoke<string>("db_read", { key: "selected_gliner_model" }),
                 invoke<string>("db_read", { key: "selected_vosk_model" }),
 
                 invoke<string>("db_read", { key: "noise_suppression" }),
-                invoke<string>("db_read", { key: "vad" }),
+                invoke<string>("db_read", { key: "vad_backend" }),
                 invoke<string>("db_read", { key: "gain_normalizer" }),
 
                 invoke<string>("db_read", { key: "api_key__picovoice" }),
@@ -207,9 +207,12 @@
             selectedMicrophone = mic
             selectedWakeWordEngine = wakeWord
             selectedIntentRecognitionEngine = intentReco
-            selectedSlotExtractionEngine = slotEngine
-            selectedVoskModel = voskModel
             selectedGlinerModel = glinerModel
+            selectedSlotExtractionEngine = slotEngine && slotEngine !== "none" ? "gliner" : "none"
+            if (slotEngine && slotEngine !== "none" && !selectedGlinerModel) {
+                selectedGlinerModel = slotEngine
+            }
+            selectedVoskModel = voskModel
             selectedNoiseSuppression = noiseSuppression
             selectedVad = vad
             gainNormalizerEnabled = gainNormalizer === "true"
@@ -259,7 +262,7 @@
     <Tabs.Tab label={t('settings-general')} icon={Gear}>
         <Space h="sm" />
         <div class="voice-select">
-            <label>{t('settings-voice')}</label>
+            <span class="field-label">{t('settings-voice')}</span>
             <p class="description">{t('settings-voice-desc')}</p>
             
             <div class="voice-options">
@@ -312,8 +315,7 @@
         <NativeSelect
             data={[
                 { label: "Rustpotter", value: "Rustpotter" },
-                { label: "Vosk", value: "Vosk" },
-                { label: "Picovoice Porcupine", value: "Picovoice" }
+                { label: "Vosk", value: "Vosk" }
             ]}
             label={t('settings-wake-word-engine')}
             description={t('settings-wake-word-desc')}
@@ -321,7 +323,7 @@
             bind:value={selectedWakeWordEngine}
         />
 
-        {#if selectedWakeWordEngine === "picovoice"}
+        {#if selectedWakeWordEngine === "Porcupine"}
             <Space h="sm" />
             <Alert title={t('settings-attention')} color="#868E96" variant="outline">
                 <Notification
@@ -374,8 +376,8 @@
         <Space h="xl" />
         <NativeSelect
             data={[
-                { label: "Intent Classifier", value: "IntentClassifier" },
-                { label: "Embedding Classifier", value: "EmbeddingClassifier" }
+                { label: "Intent Classifier", value: "intent-classifier" },
+                { label: t('settings-disabled'), value: "none" }
             ]}
             label={t('settings-intent-engine')}
             description={t('settings-intent-engine-desc')}
@@ -386,8 +388,8 @@
         <Space h="xl" />
         <NativeSelect
             data={[
-                { label: t('settings-disabled'), value: "None" },
-                { label: "GLiNER (NER)", value: "GLiNER" }
+                { label: t('settings-disabled'), value: "none" },
+                { label: "GLiNER (NER)", value: "gliner" }
             ]}
             label={t('settings-slot-engine')}
             description={t('settings-slot-engine-desc')}
@@ -395,7 +397,7 @@
             bind:value={selectedSlotExtractionEngine}
         />
 
-        {#if selectedSlotExtractionEngine === "GLiNER"}
+        {#if selectedSlotExtractionEngine === "gliner"}
             <Space h="sm" />
             {#key availableGlinerModels}
             <NativeSelect
@@ -436,9 +438,9 @@
 
         <NativeSelect
             data={[
-                { label: t('settings-disabled'), value: "None" },
-                { label: "Energy", value: "Energy" },
-                { label: "Nnnoiseless", value: "Nnnoiseless" }
+                { label: t('settings-disabled'), value: "none" },
+                { label: "Energy", value: "energy" },
+                { label: "Nnnoiseless", value: "nnnoiseless" }
             ]}
             label={t('settings-vad')}
             description={t('settings-vad-desc')}
@@ -513,7 +515,7 @@
 .voice-select {
     margin-bottom: 1rem;
     
-    label {
+    .field-label {
         font-weight: 600;
         font-size: 0.9rem;
         color: #fff;

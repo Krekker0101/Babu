@@ -169,18 +169,18 @@ body {
         margin-top: 10px;
         display: block;
 
-        & > #jarvis-logo {
+        & > #babu-logo {
             display: block;
             width: 100px;
             height: 20px;
             background: red;
-            background: url(../media/jarvis.png);
+            background: url(/media/babu.png);
             background-size: 80px;
             background-repeat: no-repeat;
             transition: all 0.3s ease;
 
             &:hover {
-                background: url(../media/jarvis-hover.png);
+                background: url(/media/babu-hover.png);
                 background-size: 80px;
                 background-repeat: no-repeat;
                 border: none!important;

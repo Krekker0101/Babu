@@ -9,8 +9,8 @@
     import Footer from "@/components/Footer.svelte"
     
     import {
-        isJarvisRunning,
-        updateJarvisStats,
+        isBabuRunning,
+        updateBabuStats,
         enableIpc,
         disableIpc,
         translate,
@@ -23,7 +23,7 @@
     let launching = false
     let wasRunning = false  // track previous state
 
-    isJarvisRunning.subscribe((value) => {
+    isBabuRunning.subscribe((value) => {
         processRunning = value
         if (value) {
             enableIpc()
@@ -36,7 +36,7 @@
     })
 
     onMount(() => {
-        updateJarvisStats()
+        updateBabuStats()
     })
 
     onDestroy(() => {
@@ -46,13 +46,13 @@
     async function runAssistant() {
         launching = true
         try {
-            await invoke("run_jarvis_app")
+            await invoke("run_babu_app")
             setTimeout(async () => {
-                await updateJarvisStats()
+                await updateBabuStats()
                 launching = false
             }, 2500)
         } catch (err) {
-            console.error("Failed to run jarvis-app:", err)
+            console.error("Failed to run babu-app:", err)
             launching = false
         }
     }

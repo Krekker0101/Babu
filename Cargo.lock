@@ -386,6 +386,102 @@ dependencies = [
 ]
 
 [[package]]
+name = "babu-app"
+version = "0.1.0"
+dependencies = [
+ "babu-core",
+ "glib 0.21.5",
+ "gtk",
+ "image",
+ "log",
+ "once_cell",
+ "parking_lot",
+ "platform-dirs",
+ "rand 0.8.5",
+ "simple-log",
+ "tokio",
+ "tray-icon",
+ "winapi",
+ "winit",
+]
+
+[[package]]
+name = "babu-cli"
+version = "0.1.0"
+dependencies = [
+ "babu-core",
+ "env_logger",
+ "log",
+ "parking_lot",
+ "tokio",
+]
+
+[[package]]
+name = "babu-core"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "fastembed",
+ "fluent",
+ "fluent-bundle",
+ "futures-util",
+ "hound",
+ "intent-classifier",
+ "kira",
+ "log",
+ "mlua",
+ "ndarray",
+ "nnnoiseless",
+ "once_cell",
+ "ort",
+ "parking_lot",
+ "platform-dirs",
+ "pv_recorder",
+ "rand 0.8.5",
+ "regex",
+ "reqwest 0.13.1",
+ "rodio",
+ "rustpotter",
+ "seqdiff",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "sha2",
+ "sys-locale",
+ "tempfile",
+ "tokenizers",
+ "tokio",
+ "tokio-tungstenite",
+ "toml 0.9.11+spec-1.1.0",
+ "unic-langid",
+ "vosk",
+ "winrt-notification",
+]
+
+[[package]]
+name = "babu-gui"
+version = "0.1.0"
+dependencies = [
+ "babu-core",
+ "lazy_static",
+ "log",
+ "once_cell",
+ "parking_lot",
+ "peak_alloc",
+ "platform-dirs",
+ "serde",
+ "serde_json",
+ "simple-log",
+ "sysinfo",
+ "systemstat",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-dialog",
+ "tauri-plugin-fs",
+ "tauri-plugin-shell",
+]
+
+[[package]]
 name = "base64"
 version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3259,102 +3355,6 @@ name = "itoa"
 version = "1.0.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "92ecc6618181def0457392ccd0ee51198e065e016d1d527a7ac1b6dc7c1f09d2"
-
-[[package]]
-name = "jarvis-app"
-version = "0.1.0"
-dependencies = [
- "glib 0.21.5",
- "gtk",
- "image",
- "jarvis-core",
- "log",
- "once_cell",
- "parking_lot",
- "platform-dirs",
- "rand 0.8.5",
- "simple-log",
- "tokio",
- "tray-icon",
- "winapi",
- "winit",
-]
-
-[[package]]
-name = "jarvis-cli"
-version = "0.1.0"
-dependencies = [
- "env_logger",
- "jarvis-core",
- "log",
- "parking_lot",
- "tokio",
-]
-
-[[package]]
-name = "jarvis-core"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "fastembed",
- "fluent",
- "fluent-bundle",
- "futures-util",
- "hound",
- "intent-classifier",
- "kira",
- "log",
- "mlua",
- "ndarray",
- "nnnoiseless",
- "once_cell",
- "ort",
- "parking_lot",
- "platform-dirs",
- "pv_recorder",
- "rand 0.8.5",
- "regex",
- "reqwest 0.13.1",
- "rodio",
- "rustpotter",
- "seqdiff",
- "serde",
- "serde_json",
- "serde_yaml",
- "sha2",
- "sys-locale",
- "tempfile",
- "tokenizers",
- "tokio",
- "tokio-tungstenite",
- "toml 0.9.11+spec-1.1.0",
- "unic-langid",
- "vosk",
- "winrt-notification",
-]
-
-[[package]]
-name = "jarvis-gui"
-version = "0.1.0"
-dependencies = [
- "jarvis-core",
- "lazy_static",
- "log",
- "once_cell",
- "parking_lot",
- "peak_alloc",
- "platform-dirs",
- "serde",
- "serde_json",
- "simple-log",
- "sysinfo",
- "systemstat",
- "tauri",
- "tauri-build",
- "tauri-plugin-dialog",
- "tauri-plugin-fs",
- "tauri-plugin-shell",
-]
 
 [[package]]
 name = "javascriptcore-rs"
