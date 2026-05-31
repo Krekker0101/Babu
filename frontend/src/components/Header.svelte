@@ -56,11 +56,11 @@
 <header id="header" class="header">
     <div class="header-left">
         <div class="logo">
-            <a href="/" title="JARVIS">
-                <img src="/media/128x128.png" alt="Jarvis Logo" />
+            <a href="/" title="BABU">
+                <img src="/media/128x128.png" alt="Babu Logo" />
             </a>
             <div class="logo-text">
-                <span class="logo-title"><a href="/" id="jarvis-logo">&nbsp;</a></span>
+                <span class="logo-title"><a href="/" id="babu-logo">&nbsp;</a></span>
                 <span class="logo-version"><small>v</small>{appVersion} <span class="v-badge">BETA</span></span>
             </div>
         </div>

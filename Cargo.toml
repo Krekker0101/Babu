@@ -1,9 +1,9 @@
 [workspace]
 members = [
-    "crates/jarvis-core",
-    "crates/jarvis-app", 
-    "crates/jarvis-gui",
-    "crates/jarvis-cli"
+    "crates/babu-core",
+    "crates/babu-app",
+    "crates/babu-gui",
+    "crates/babu-cli"
 ]
 resolver = "2"
 
@@ -11,7 +11,7 @@ resolver = "2"
 version = "0.1.0"
 authors = ["Abraham Tugalov"]
 license = "GPL-3.0-only"
-repository = "https://github.com/Priler/jarvis"
+repository = "https://github.com/Priler/babu"
 edition = "2021"
 
 [workspace.dependencies]

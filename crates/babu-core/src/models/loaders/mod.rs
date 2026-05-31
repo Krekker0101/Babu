@@ -1,0 +1,12 @@
+#[cfg(feature = "babu_app")]
+pub mod embedding;
+#[cfg(feature = "babu_app")]
+pub mod gliner;
+#[cfg(feature = "babu_app")]
+pub mod intent_classifier;
+#[cfg(feature = "nnnoiseless")]
+pub mod nnnoiseless;
+#[cfg(feature = "babu_app")]
+pub mod ort_model;
+#[cfg(feature = "vosk")]
+pub mod vosk;

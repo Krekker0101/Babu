@@ -1,14 +1,15 @@
 {
-  "name": "jarvis-app",
+  "name": "babu-app",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "svelte-check --ignore '.routify' --no-tsconfig && vite build",
+    "build": "npm run clean:routify && svelte-check --ignore '.routify' --no-tsconfig && vite build",
     "preview": "vite preview",
-    "check": "svelte-check --ignore '.routify' --tsconfig ./tsconfig.json",
-    "tauri": "tauri"
+    "check": "npm run clean:routify && svelte-check --ignore '.routify' --tsconfig ./tsconfig.json",
+    "tauri": "tauri",
+    "clean:routify": "node -e \"fs.rmSync('.routify',{recursive:true,force:true})\""
   },
   "dependencies": {
     "@svelteuidev/composables": "^0.15.7",

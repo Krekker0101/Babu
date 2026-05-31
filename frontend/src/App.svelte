@@ -1,6 +1,8 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte"
     import { Router } from "@roxi/routify"
+    // Routify generates this module at dev/build time.
+    // @ts-ignore generated file is intentionally not committed
     import routes from "../.routify/routes.default.js"
     import { SvelteUIProvider } from "@svelteuidev/core"
     import Events from "./Events.svelte"

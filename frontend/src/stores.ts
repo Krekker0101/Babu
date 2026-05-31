@@ -3,7 +3,7 @@ import { invoke } from "@tauri-apps/api/core"
 
 // ### RE-EXPORT IPC STORES
 export {
-    jarvisState,
+    babuState,
     ipcConnected,
     lastRecognizedText,
     lastExecutedCommand,
@@ -15,7 +15,7 @@ export {
     sendAction,
     sendIpcMessage,
     sendTextCommand,
-    stopJarvisApp,
+    stopBabuApp,
     reloadCommands
 } from "./lib/ipc"
 
@@ -31,9 +31,9 @@ export {
 } from "./lib/i18n"
 
 // ### RUNNING STATE
-export const isJarvisRunning = writable(false)
-export const jarvisRamUsage = writable(0)
-export const jarvisCpuUsage = writable(0)
+export const isBabuRunning = writable(false)
+export const babuRamUsage = writable(0)
+export const babuCpuUsage = writable(0)
 
 // ### ASSISTANT VOICE
 export const assistantVoice = writable("")
@@ -82,14 +82,14 @@ export async function loadAppInfo() {
     }
 }
 
-export async function updateJarvisStats() {
+export async function updateBabuStats() {
     try {
-        const stats = await invoke<{running: boolean, ram_mb: number, cpu_usage: number}>("get_jarvis_app_stats")
-        isJarvisRunning.set(stats.running)
-        jarvisRamUsage.set(stats.ram_mb)
-        jarvisCpuUsage.set(stats.cpu_usage)
+        const stats = await invoke<{running: boolean, ram_mb: number, cpu_usage: number}>("get_babu_app_stats")
+        isBabuRunning.set(stats.running)
+        babuRamUsage.set(stats.ram_mb)
+        babuCpuUsage.set(stats.cpu_usage)
     } catch (err) {
-        console.error("failed to get jarvis stats:", err)
+        console.error("failed to get babu stats:", err)
     }
 }
 
@@ -99,8 +99,8 @@ let statsInterval: ReturnType<typeof setInterval> | null = null
 export function startStatsPolling(intervalMs = 5000) {
     if (statsInterval) return // already running
     
-    updateJarvisStats()
-    statsInterval = setInterval(updateJarvisStats, intervalMs)
+    updateBabuStats()
+    statsInterval = setInterval(updateBabuStats, intervalMs)
 }
 
 export function stopStatsPolling() {
