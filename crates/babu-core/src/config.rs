@@ -134,6 +134,7 @@ pub const RUSTPOTTER_DEFAULT_CONFIG: Lazy<RustpotterConfig> = Lazy::new(|| {
 
 // PICOVOICE
 pub const COMMANDS_PATH: &str = "resources/commands/";
+pub const LEARNED_COMMANDS_FILE_NAME: &str = "learned_commands.toml";
 pub const KEYWORDS_PATH: &str = "resources/keywords/";
 pub const DEFAULT_KEYWORD: &str = "babu_windows.ppn";
 pub const DEFAULT_SENSITIVITY: f32 = 1.0;

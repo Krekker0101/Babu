@@ -1,0 +1,101 @@
+[[commands]]
+id = "open_notepad"
+type = "cli"
+cli_cmd = "notepad"
+sounds.ru = ["ok1", "ok2", "ok3"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = [
+    "открой блокнот",
+    "запусти блокнот",
+    "включи блокнот",
+    "новая заметка",
+    "хочу написать заметку",
+]
+phrases.en = [
+    "open notepad",
+    "launch notepad",
+    "start notepad",
+    "new note",
+]
+
+[[commands]]
+id = "open_explorer"
+type = "cli"
+cli_cmd = "explorer"
+sounds.ru = ["ok1", "ok2", "ok3"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = [
+    "открой проводник",
+    "запусти проводник",
+    "покажи файлы",
+    "открой файлы",
+    "файловый менеджер",
+]
+phrases.en = [
+    "open explorer",
+    "open file explorer",
+    "show files",
+    "open files",
+    "file manager",
+]
+
+[[commands]]
+id = "open_terminal"
+type = "cli"
+cli_cmd = "cmd"
+sounds.ru = ["ok1", "ok2", "ok3"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = [
+    "открой терминал",
+    "запусти терминал",
+    "открой командную строку",
+    "запусти командную строку",
+    "консоль",
+]
+phrases.en = [
+    "open terminal",
+    "launch terminal",
+    "open command prompt",
+    "launch command prompt",
+    "open console",
+]
+
+[[commands]]
+id = "open_paint"
+type = "cli"
+cli_cmd = "mspaint"
+sounds.ru = ["ok1", "ok2", "ok3"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = [
+    "открой paint",
+    "открой пейнт",
+    "запусти paint",
+    "запусти пейнт",
+    "хочу рисовать",
+]
+phrases.en = [
+    "open paint",
+    "launch paint",
+    "start paint",
+    "i want to draw",
+]
+
+[[commands]]
+id = "open_windows_settings"
+type = "cli"
+cli_cmd = "start ms-settings:"
+sounds.ru = ["ok1", "ok2", "ok3"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = [
+    "открой настройки",
+    "открой параметры",
+    "запусти настройки windows",
+    "параметры windows",
+    "системные настройки",
+]
+phrases.en = [
+    "open settings",
+    "open windows settings",
+    "launch settings",
+    "system settings",
+]
