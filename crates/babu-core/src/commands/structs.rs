@@ -63,10 +63,10 @@ pub struct JCommand {
 
     // CACHE
     #[serde(skip, default)]
-    sounds_cache: RwLock<HashMap<String, Arc<Vec<String>>>>,
+    pub(crate) sounds_cache: RwLock<HashMap<String, Arc<Vec<String>>>>,
 
     #[serde(skip, default)]
-    phrases_cache: RwLock<HashMap<String, Arc<Vec<String>>>>,
+    pub(crate) phrases_cache: RwLock<HashMap<String, Arc<Vec<String>>>>,
 }
 
 // custom Clone

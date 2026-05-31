@@ -41,12 +41,24 @@ This are the neural networks we are currently using:
 Currently, only Russian language is supported.<br>
 But soon, Ukranian and English will be added for the interface, wake-word detection and speech recognition.
 
+## Self-learning command aliases
+
+Babu can learn local aliases for existing commands. Say or type phrases like:
+
+- `запомни команду открой мои файлы как открой проводник`
+- `когда я скажу новая заметка выполняй открой блокнот`
+- `learn command start writing as open notepad`
+
+Learned aliases are stored in the user config directory in `learned_commands.toml` and are matched before built-in fuzzy command matching.
+
 ## How to build?
 
 Nothing special was used to build this project.<br>
 You need only Rust and NodeJS installed on your system.<br>
 Other than that, all you need is to install all the dependencies and then compile the code with `cargo tauri build` command.<br>
 Or run dev with `cargo tauri dev`.
+
+To build the application installer, run `./scripts/build-installer.sh`. The script builds the frontend, the background assistant binary, copies runtime resources, and then runs the Tauri bundler.
 
 <br><br>
 *Thought you might need some of the platform specific libraries for [PvRecorder](https://github.com/Picovoice/pvrecorder) and [Vosk](https://github.com/alphacep/vosk-api).*

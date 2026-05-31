@@ -89,3 +89,63 @@ phrases.ua = [
     "запусти гугл",
     "зайди в гугл",
 ]
+
+[[commands]]
+id = "open_youtube"
+type = "ahk"
+exe_path = "ahk/Run website.exe"
+exe_args = ["https://youtube.com"]
+sounds.ru = ["ok1", "ok2", "ok3", "ok4"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = ["открой youtube", "открой ютуб", "запусти ютуб", "включи ютуб", "открой видео"]
+phrases.en = ["open youtube", "launch youtube", "start youtube", "open videos"]
+
+[[commands]]
+id = "open_gmail"
+type = "ahk"
+exe_path = "ahk/Run website.exe"
+exe_args = ["https://mail.google.com"]
+sounds.ru = ["ok1", "ok2", "ok3", "ok4"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = ["открой почту", "открой gmail", "запусти почту", "проверь почту"]
+phrases.en = ["open mail", "open gmail", "launch mail", "check mail"]
+
+[[commands]]
+id = "open_maps"
+type = "ahk"
+exe_path = "ahk/Run website.exe"
+exe_args = ["https://maps.google.com"]
+sounds.ru = ["ok1", "ok2", "ok3", "ok4"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = ["открой карты", "открой google maps", "покажи карту", "запусти карты"]
+phrases.en = ["open maps", "open google maps", "show map", "launch maps"]
+
+[[commands]]
+id = "open_translate"
+type = "ahk"
+exe_path = "ahk/Run website.exe"
+exe_args = ["https://translate.google.com"]
+sounds.ru = ["ok1", "ok2", "ok3", "ok4"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = ["открой переводчик", "открой google переводчик", "переводчик", "запусти переводчик"]
+phrases.en = ["open translator", "open google translate", "launch translator", "translate"]
+
+[[commands]]
+id = "open_github"
+type = "ahk"
+exe_path = "ahk/Run website.exe"
+exe_args = ["https://github.com"]
+sounds.ru = ["ok1", "ok2", "ok3", "ok4"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = ["открой github", "открой гитхаб", "запусти github", "зайди на github"]
+phrases.en = ["open github", "launch github", "go to github", "start github"]
+
+[[commands]]
+id = "open_telegram"
+type = "ahk"
+exe_path = "ahk/Run website.exe"
+exe_args = ["https://web.telegram.org"]
+sounds.ru = ["ok1", "ok2", "ok3", "ok4"]
+sounds.en = ["ok1", "ok2", "ok3"]
+phrases.ru = ["открой telegram", "открой телеграм", "запусти телеграм", "telegram web"]
+phrases.en = ["open telegram", "launch telegram", "open telegram web", "telegram web"]

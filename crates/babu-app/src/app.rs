@@ -362,16 +362,24 @@ fn execute_command(text: &str, rt: &tokio::runtime::Runtime) -> bool {
         }
     };
 
-    let cmd_result = if let Some((intent_id, confidence)) = rt.block_on(intent::classify(text)) {
-        info!(
-            "Intent recognized: {} (confidence: {:.2})",
-            intent_id, confidence
-        );
-        intent::get_command_by_intent(commands_list, &intent_id)
-    } else {
-        info!("Intent not recognized, trying levenshtein fallback...");
-        commands::fetch_command(text, commands_list)
-    };
+    if try_learn_command_alias(text, commands_list) {
+        ipc::send(IpcEvent::Idle);
+        return false;
+    }
+
+    let cmd_result =
+        if let Some(command) = commands::fetch_learned_alias_command(text, commands_list) {
+            Some(command)
+        } else if let Some((intent_id, confidence)) = rt.block_on(intent::classify(text)) {
+            info!(
+                "Intent recognized: {} (confidence: {:.2})",
+                intent_id, confidence
+            );
+            intent::get_command_by_intent(commands_list, &intent_id)
+        } else {
+            info!("Intent not recognized, trying levenshtein fallback...");
+            commands::fetch_command(text, commands_list)
+        };
 
     if let Some((cmd_path, cmd_config)) = cmd_result {
         info!("Command found: {:?}", cmd_path);
@@ -426,6 +434,87 @@ fn execute_command(text: &str, rt: &tokio::runtime::Runtime) -> bool {
 
     ipc::send(IpcEvent::Idle);
     false // no chain on error or not found
+}
+
+fn try_learn_command_alias(text: &str, commands_list: &[commands::JCommandsList]) -> bool {
+    let Some((alias, target_phrase)) = parse_learn_alias_phrase(text) else {
+        return false;
+    };
+
+    if alias.len() < 3 || target_phrase.len() < 3 {
+        voices::play_error();
+        ipc::send(IpcEvent::Error {
+            message: "Learning phrase is too short".to_string(),
+        });
+        return true;
+    }
+
+    let Some((_, target_command)) = commands::fetch_command(&target_phrase, commands_list) else {
+        voices::play_not_found();
+        ipc::send(IpcEvent::Error {
+            message: format!(
+                "Cannot learn '{}': target command '{}' was not found",
+                alias, target_phrase
+            ),
+        });
+        return true;
+    };
+
+    match commands::learn_alias(&alias, &target_command.id, &i18n::get_language()) {
+        Ok(()) => {
+            info!(
+                "Learned command alias '{}' -> '{}'",
+                alias, target_command.id
+            );
+            voices::play_ok();
+            ipc::send(IpcEvent::CommandExecuted {
+                id: format!("learn_alias:{}", target_command.id),
+                success: true,
+            });
+        }
+        Err(msg) => {
+            error!("Failed to learn command alias: {}", msg);
+            voices::play_error();
+            ipc::send(IpcEvent::Error { message: msg });
+        }
+    }
+
+    true
+}
+
+fn parse_learn_alias_phrase(text: &str) -> Option<(String, String)> {
+    let normalized = text.trim().to_lowercase();
+    let patterns = [
+        ("запомни команду ", " как "),
+        ("запомни фразу ", " как "),
+        ("научись команде ", " как "),
+        ("когда я скажу ", " выполняй "),
+        ("когда я скажу ", " выполни "),
+        ("если я скажу ", " выполняй "),
+        ("если я скажу ", " выполни "),
+        ("learn command ", " as "),
+        ("remember command ", " as "),
+        ("when i say ", " do "),
+        ("when i say ", " run "),
+    ];
+
+    for (prefix, separator) in patterns {
+        let Some(rest) = normalized.strip_prefix(prefix) else {
+            continue;
+        };
+
+        let Some((alias, target)) = rest.split_once(separator) else {
+            continue;
+        };
+
+        let alias = alias.trim().to_string();
+        let target = target.trim().to_string();
+        if !alias.is_empty() && !target.is_empty() {
+            return Some((alias, target));
+        }
+    }
+
+    None
 }
 
 pub fn close(code: i32) {

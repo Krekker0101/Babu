@@ -4,8 +4,8 @@
   "version": "0.0.3",
   "identifier": "com.priler.babu",
   "build": {
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm --prefix ../../frontend run dev",
+    "beforeBuildCommand": "npm --prefix ../../frontend run build",
     "devUrl": "http://localhost:1420",
     "frontendDist": "../../frontend/dist/client"
   },
