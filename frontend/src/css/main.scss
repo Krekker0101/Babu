@@ -10,7 +10,7 @@ body {
     color: #ffffff;
     overflow: hidden;
 
-    background-color: darken($color: #090C10, $amount: 0.8)!important;
+    background-color: #090b0f !important;
     // background-image: url(../media/bg.png)!important;
     background-repeat: no-repeat;
     background-size: contain;
@@ -171,20 +171,38 @@ body {
 
         & > #babu-logo {
             display: block;
-            width: 100px;
-            height: 20px;
-            background: red;
-            background: url(/media/babu.png);
-            background-size: 80px;
-            background-repeat: no-repeat;
-            transition: all 0.3s ease;
+            width: 130px;
+            min-height: 34px;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1;
+            text-shadow: 0 0 14px rgba(82, 254, 254, 0.45);
+            transition: all 0.25s ease;
+
+            &::before {
+                content: "Babu";
+                display: block;
+                font-size: 28px;
+                font-weight: 800;
+            }
+
+            &::after {
+                content: "БАБУ";
+                display: block;
+                margin-top: 2px;
+                color: rgba(82, 254, 254, 0.82);
+                font-size: 10px;
+                font-weight: 700;
+                letter-spacing: 0.32em;
+            }
 
             &:hover {
-                background: url(/media/babu-hover.png);
-                background-size: 80px;
-                background-repeat: no-repeat;
+                color: #52fefe;
                 border: none!important;
                 text-decoration: none;
+                text-shadow: 0 0 18px rgba(82, 254, 254, 0.7);
             }
         }
     }

@@ -19,27 +19,29 @@
 
     $: t = (key: string) => translate($translations, key)
 
-    let processRunning = false
     let launching = false
-    let wasRunning = false  // track previous state
+    let wasRunning = false
+    let launchTimeout: ReturnType<typeof setTimeout> | undefined
 
-    isBabuRunning.subscribe((value) => {
-        processRunning = value
-        if (value) {
+    $: processRunning = $isBabuRunning
+    $: {
+        if (processRunning && !wasRunning) {
             enableIpc()
             wasRunning = true
         } else if (wasRunning) {
-            // only disable if it was running before
             disableIpc()
             wasRunning = false
         }
-    })
+    }
 
     onMount(() => {
         updateBabuStats()
     })
 
     onDestroy(() => {
+        if (launchTimeout) {
+            clearTimeout(launchTimeout)
+        }
         disableIpc()
     })
 
@@ -47,7 +49,7 @@
         launching = true
         try {
             await invoke("run_babu_app")
-            setTimeout(async () => {
+            launchTimeout = setTimeout(async () => {
                 await updateBabuStats()
                 launching = false
             }, 2500)
