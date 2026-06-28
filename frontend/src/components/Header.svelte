@@ -7,7 +7,6 @@
     let appVersion = ""
     let commandsCount = 0
 
-    let selectedLang = "?"
     let langDropdownOpen = false
 
     const languages = [
@@ -21,11 +20,6 @@
             appVersion = await invoke<string>("get_app_version")
             commandsCount = await invoke<number>("get_commands_count")
 
-            // load saved language
-            const savedLang = await invoke<string>("db_read", { key: "language" })
-            if (savedLang) {
-                selectedLang = savedLang
-            }
         } catch {
             commandsCount = 0
         }
@@ -56,11 +50,11 @@
 <header id="header" class="header">
     <div class="header-left">
         <div class="logo">
-            <a href="/" title="BABU">
-                <img src="/media/128x128.png" alt="Babu Logo" />
+            <a href="/" title="Babu (БАБУ)">
+                <img src="/media/128x128.png" alt="Babu (БАБУ) logo" />
             </a>
             <div class="logo-text">
-                <span class="logo-title"><a href="/" id="babu-logo">&nbsp;</a></span>
+                <span class="logo-title"><a href="/" id="babu-logo" aria-label="Babu (БАБУ)"></a></span>
                 <span class="logo-version"><small>v</small>{appVersion} <span class="v-badge">BETA</span></span>
             </div>
         </div>

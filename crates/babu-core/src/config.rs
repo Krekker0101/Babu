@@ -91,7 +91,7 @@ pub const SUPPORT_PATREON_LINK: Option<&str> = Some("https://www.patreon.com/c/p
    Tray.
 */
 pub const TRAY_ICON: &str = "32x32.png";
-pub const TRAY_TOOLTIP: &str = "Babu Voice Assistant";
+pub const TRAY_TOOLTIP: &str = "Babu (БАБУ) Voice Assistant";
 
 // RUSPOTTER
 pub const RUSPOTTER_MIN_SCORE: f32 = 0.62;

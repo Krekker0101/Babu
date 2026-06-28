@@ -1,8 +1,8 @@
-# BABU Voice Assistant (this readme is outdated)
+# Babu (БАБУ) Voice Assistant
 
 ![We are NOT limited by the technology of our time!](poster.jpg)
 
-`Babu` - is a voice assistant made as an experiment using neural networks for things like **STT/TTS/Wake Word/NLU** etc.
+`Babu` (по-русски — **БАБУ**) is a voice assistant made as an experiment using neural networks for things like **STT/TTS/Wake Word/NLU** etc.
 
 The main project challenges we try to achieve is:
  - 100% offline *(no cloud)*
@@ -51,14 +51,28 @@ Babu can learn local aliases for existing commands. Say or type phrases like:
 
 Learned aliases are stored in the user config directory in `learned_commands.toml` and are matched before built-in fuzzy command matching.
 
-## How to build?
+## How to build and run?
 
-Nothing special was used to build this project.<br>
-You need only Rust and NodeJS installed on your system.<br>
-Other than that, all you need is to install all the dependencies and then compile the code with `cargo tauri build` command.<br>
-Or run dev with `cargo tauri dev`.
+You need Rust and Node.js installed. On Linux, install the native audio/GUI libraries before running Rust builds:
 
-To build the application installer, run `./scripts/build-installer.sh`. The script builds the frontend, the background assistant binary, copies runtime resources, and then runs the Tauri bundler.
+```bash
+sudo apt-get update
+sudo apt-get install -y libasound2-dev libglib2.0-dev libgtk-3-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+```
+
+Install frontend dependencies, then run the Tauri GUI from the GUI crate:
+
+```bash
+cd frontend
+npm install
+npm run check
+npm run build
+cd ../crates/babu-gui
+cargo tauri dev
+```
+
+For a release installer, run `./scripts/build-installer.sh`. The script builds the frontend, the background assistant binary, copies runtime resources, and then runs the Tauri bundler.
+
 
 <br><br>
 *Thought you might need some of the platform specific libraries for [PvRecorder](https://github.com/Picovoice/pvrecorder) and [Vosk](https://github.com/alphacep/vosk-api).*
