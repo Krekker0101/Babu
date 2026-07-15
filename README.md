@@ -1,91 +1,401 @@
-# Babu (БАБУ) Voice Assistant
+<div align="center">
 
-![We are NOT limited by the technology of our time!](poster.jpg)
+# Babu AI
+### Intelligent Offline Voice Assistant
 
-`Babu` (по-русски — **БАБУ**) is a voice assistant made as an experiment using neural networks for things like **STT/TTS/Wake Word/NLU** etc.
+<img src="poster.jpg" alt="Babu Banner" width="100%">
 
-The main project challenges we try to achieve is:
- - 100% offline *(no cloud)*
- - Open source *(full transparency)*
- - No data collection *(we respect your privacy)*
+<p>
+An intelligent, privacy-first desktop voice assistant built with modern AI technologies.<br>
+Designed to run completely offline while delivering fast, natural and secure voice interactions.
+</p>
 
-Our backend stack is 🦀 **[Rust](https://www.rust-lang.org/)** with ❤️ **[Tauri](https://tauri.app/)**.<br>
-For the frontend we use ⚡️ **[Vite](https://vitejs.dev/)** + 🛠️ **[Svelte](https://svelte.dev/)**.
+<p>
 
-*Other libraries, tools and packages can be found in source code.*
+![Rust](https://img.shields.io/badge/Rust-Backend-orange?style=for-the-badge&logo=rust)
+![Tauri](https://img.shields.io/badge/Tauri-Desktop-blue?style=for-the-badge&logo=tauri)
+![Svelte](https://img.shields.io/badge/Svelte-Frontend-ff3e00?style=for-the-badge&logo=svelte)
+![Vite](https://img.shields.io/badge/Vite-Build-purple?style=for-the-badge&logo=vite)
+![License](https://img.shields.io/badge/Open%20Source-Yes-success?style=for-the-badge)
 
-## Neural Networks
+</p>
 
-This are the neural networks we are currently using:
+---
 
- - Speech-To-Text
-	 - [Vosk Speech Recognition Toolkit](https://github.com/alphacep/vosk-api) via [Vosk-rs](https://github.com/Bear-03/vosk-rs)
- - Text-To-Speech
-	 - [~~Silero TTS~~](https://github.com/snakers4/silero-models) *(currently not used)*
-	 - [~~Coqui TTS~~](https://github.com/coqui-ai/TTS) *(currently not used)*
-	 - [~~WinRT~~](https://github.com/ndarilek/tts-rs) *(currently not used)*
-	 - [~gTTS~](https://github.com/nightlyistaken/tts_rust) *(currently not used)*
-	 - [~~SAM~~](https://github.com/s-macke/SAM) *(currently not used)*
- - Wake Word
-	 - [Rustpotter](https://github.com/GiviMAD/rustpotter) *(Partially implemented, still WIP)*
-	 - [Picovoice Porcupine](https://github.com/Picovoice/porcupine) via [official SDK](https://github.com/Picovoice/porcupine#rust) *(requires API key)*
-	 - [Vosk Speech Recognition Toolkit](https://github.com/alphacep/vosk-api) via [Vosk-rs](https://github.com/Bear-03/vosk-rs) *(very slow)*
-	 - [~~Snowboy~~](https://github.com/Kitt-AI/snowboy) *(currently not used)*
- - NLU
-	 - Nothing yet.
-- Chat
-	- [~~ChatGPT~~](https://chat.openai.com/) (coming soon)
+### 🚀 Fast • 🔒 Private • ⚡ Offline • 🧠 AI Powered
 
-## Supported Languages
+</div>
 
-Currently, only Russian language is supported.<br>
-But soon, Ukranian and English will be added for the interface, wake-word detection and speech recognition.
+# Overview
 
-## Self-learning command aliases
+**Babu AI** is a next-generation desktop voice assistant focused on **privacy**, **performance**, and **complete local execution**.
 
-Babu can learn local aliases for existing commands. Say or type phrases like:
+Unlike traditional assistants that constantly communicate with cloud servers, Babu performs speech recognition, wake-word detection and command processing directly on your computer.
 
-- `запомни команду открой мои файлы как открой проводник`
-- `когда я скажу новая заметка выполняй открой блокнот`
-- `learn command start writing as open notepad`
+No telemetry.
 
-Learned aliases are stored in the user config directory in `learned_commands.toml` and are matched before built-in fuzzy command matching.
+No hidden analytics.
 
-## How to build and run?
+No personal data collection.
 
-You need Rust and Node.js installed. On Linux, install the native audio/GUI libraries before running Rust builds:
+Your voice never leaves your device.
 
-```bash
-sudo apt-get update
-sudo apt-get install -y libasound2-dev libglib2.0-dev libgtk-3-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+---
+
+# Vision
+
+Our goal is to build one of the most advanced open-source desktop AI assistants with the following principles:
+
+- 🔒 100% Offline Processing
+- 🧠 AI-Powered Voice Recognition
+- ⚡ Extremely Low Latency
+- 🛡 Privacy by Design
+- 🌍 Open Source & Transparent
+- 📦 Cross-Platform Architecture
+- 🔌 Easily Extendable
+- 💻 Native Desktop Performance
+
+---
+
+# Core Features
+
+### 🎙 Speech Recognition (STT)
+
+Fast offline speech recognition powered by neural networks.
+
+- Continuous Listening
+- Streaming Recognition
+- High Accuracy
+- Local Processing
+- No Internet Required
+
+---
+
+### 🔊 Natural Speech Synthesis (TTS)
+
+Generate natural voice responses directly on-device.
+
+Supported engines include:
+
+- Silero TTS
+- Coqui TTS
+- Windows TTS
+- SAM
+- gTTS (legacy)
+
+Future versions will include expressive neural voices.
+
+---
+
+### 👂 Wake Word Detection
+
+Activate the assistant hands-free using custom wake words.
+
+Current implementations:
+
+- Rustpotter
+- Picovoice Porcupine
+- Vosk Wake Detection
+
+Future improvements include:
+
+- Personal voice adaptation
+- Custom wake-word training
+- Lower CPU usage
+- Faster activation
+
+---
+
+### 🧠 Natural Language Understanding (NLU)
+
+Upcoming AI-powered language understanding module capable of:
+
+- Intent Recognition
+- Context Awareness
+- Multi-step Commands
+- Smart Dialogs
+- Personalized Responses
+
+---
+
+### 🤖 AI Chat
+
+Future versions will support:
+
+- Local Large Language Models
+- AI Conversations
+- Knowledge Base
+- Context Memory
+- Productivity Assistant
+
+---
+
+# Privacy First
+
+Privacy is the foundation of Babu.
+
+Unlike cloud assistants, Babu never uploads your voice recordings.
+
+✔ No Cloud Processing
+
+✔ No Telemetry
+
+✔ No Tracking
+
+✔ No User Profiling
+
+✔ No Data Collection
+
+Everything stays on your own computer.
+
+---
+
+# Technology Stack
+
+## Backend
+
+- Rust
+- Tauri
+- Tokio
+- Serde
+- Crossterm
+- Rodio
+- CPAL
+
+---
+
+## Frontend
+
+- Svelte
+- TypeScript
+- Vite
+- HTML5
+- CSS3
+
+---
+
+## AI Stack
+
+### Speech Recognition
+
+- Vosk
+- Vosk-rs
+
+### Wake Word
+
+- Rustpotter
+- Picovoice Porcupine
+
+### Speech Synthesis
+
+- Silero
+- Coqui
+- Windows TTS
+- SAM
+
+---
+
+# Supported Languages
+
+Current:
+
+- 🇷🇺 Russian
+
+Planned:
+
+- 🇺🇸 English
+- 🇺🇦 Ukrainian
+- 🇹🇯 Tajik
+- 🇩🇪 German
+- 🇫🇷 French
+- 🇪🇸 Spanish
+
+---
+
+# Smart Command Learning
+
+Babu can automatically learn new aliases for existing commands.
+
+Examples:
+
+```
+remember command open explorer as open files
 ```
 
-Install frontend dependencies, then run the Tauri GUI from the GUI crate:
+```
+learn command start writing as open notepad
+```
+
+```
+запомни команду открой документы как открой проводник
+```
+
+Learned commands are stored locally inside:
+
+```
+learned_commands.toml
+```
+
+No cloud synchronization is used.
+
+---
+
+# Project Structure
+
+```
+Babu
+│
+├── frontend/
+├── crates/
+│   ├── assistant/
+│   ├── gui/
+│   ├── speech/
+│   ├── wakeword/
+│   └── core/
+│
+├── models/
+├── resources/
+├── scripts/
+├── docs/
+└── assets/
+```
+
+---
+
+# Installation
+
+## Requirements
+
+- Rust (latest stable)
+- Cargo
+- Node.js
+- npm
+
+Linux dependencies:
+
+```bash
+sudo apt update
+
+sudo apt install \
+libasound2-dev \
+libglib2.0-dev \
+libgtk-3-dev \
+libwebkit2gtk-4.1-dev \
+libappindicator3-dev \
+librsvg2-dev \
+patchelf
+```
+
+---
+
+# Development
+
+Install frontend dependencies:
 
 ```bash
 cd frontend
+
 npm install
+
 npm run check
+
 npm run build
+```
+
+Run the desktop application:
+
+```bash
 cd ../crates/babu-gui
+
 cargo tauri dev
 ```
 
-For a release installer, run `./scripts/build-installer.sh`. The script builds the frontend, the background assistant binary, copies runtime resources, and then runs the Tauri bundler.
+Create production build:
 
+```bash
+./scripts/build-installer.sh
+```
 
-<br><br>
-*Thought you might need some of the platform specific libraries for [PvRecorder](https://github.com/Picovoice/pvrecorder) and [Vosk](https://github.com/alphacep/vosk-api).*
+---
 
-## Author
+# Roadmap
 
-Abraham Tugalov
+- AI Conversation Engine
+- Plugin Marketplace
+- Local LLM Support
+- Vision Recognition
+- OCR
+- Smart Automation
+- Voice Macros
+- Smart Home Integration
+- Calendar Assistant
+- Notes Assistant
+- Browser Automation
+- Multi-language Recognition
+- Better Wake Word Detection
+- GPU Acceleration
 
-## Python version?
-Old version of Babu was built with Python.<br>
-The last Python version commit can be found [here](https://github.com/Priler/babu/tree/943efbfbdb8aeb5889fa5e2dc7348ca4ea0b81df).
+---
 
-## License
+# Contributing
 
-[Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/)<br>
-See LICENSE.txt file for more details.
+Contributions are always welcome.
+
+If you have ideas, improvements, or bug fixes, feel free to open an Issue or submit a Pull Request.
+
+Let's build the future of privacy-focused AI together.
+
+---
+
+# Performance Goals
+
+- ⚡ Startup < 1 second
+- 🎤 Recognition latency < 200ms
+- 💾 Low memory usage
+- 🖥 Native desktop performance
+- 🔋 Minimal CPU consumption
+
+---
+
+# Author
+
+## Abdullo Ashurov
+
+**Full Stack Software Engineer**
+
+Specialized in:
+
+- AI Applications
+- Desktop Software
+- Backend Engineering
+- Rust Development
+- Go Development
+- React Ecosystem
+- Distributed Systems
+- System Architecture
+
+GitHub Portfolio:
+
+```
+Designed and developed with ❤️ by Abdullo Ashurov
+```
+
+---
+
+# License
+
+This project is distributed under the
+
+**Attribution-NonCommercial-ShareAlike 4.0 International**
+
+See the **LICENSE** file for details.
+
+---
+
+<div align="center">
+
+### ⭐ If you like this project, don't forget to star the repository.
+
+**Building the future of private AI.**
+
+</div>
